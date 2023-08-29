@@ -1,15 +1,20 @@
-const sequelize = require('../config/connection');
-const seedPlanet = require('../seeds/planet-data');
-const seedUser = require('../seeds/user-seeds');
+const User = require('./User');
+const Post = require('./Post');
+const Comment = require('./Comment');
 
-const seedAll = async () => {
-    
-    await sequelize.sync({ force: true });
+Post.belongsTo(User, {
+  foreignKey: "userID",
+  onDelete: "CASCADE"
+});
 
-    await seedPlanet();
+Post.hasMany(Comment, {
+  foreignKey: "postID",
+  onDelete: "CASCADE"
+})
 
-    await seedUser();
+Comment.belongsTo(User, {
+  foreignKey: "userID",
+  onDelete: "CASCADE"
+})
 
-  process.exit(0);
-};
-seedAll();
+module.exports = {User, Post, Comment};

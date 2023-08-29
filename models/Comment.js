@@ -23,7 +23,22 @@ Comment.init(
         dateCreated: {
             type:DataTypes.DATE,
             defaultValue: DataTypes.NOW
-        }
+        },
+        postID: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "post",
+                key: "id"
+            }
+        },
+        userID: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "user",
+                key: "id"
+            }
+        },
+
     },
     {
         sequelize,
