@@ -2,9 +2,21 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const hbs = exphbs.create({});
-
+const session = require('express-session');
 const app = express();
+const sequelize = require('./config/connection');
 const PORT = process.env.PORT || 3001;
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+const sess = {
+    secret: "Super duper secret",
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+    store: SequelizeStore({
+        db: sequelize
+    })
+};
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

@@ -61,15 +61,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     // update a category by its `id` value
     Post.update(//references correct model
-      {
-        title: req.body.title,//altered information
-      },
-      {
-        content: req.body.category_name,//altered information
-      },
-      {
-        userID: req.body.userID,//altered information
-      },
+      req.body,
       {
         where: {
           id: req.params.id,//targets correct ID
