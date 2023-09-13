@@ -7,8 +7,8 @@ const router = express.Router();
 const postRoutes = require("./api/post-routes");
 router.use("/api/posts",postRoutes)
 
-//const userRoutes = require("./api/user-routes.js");
-//router.use("/api/users",userRoutes)
+const userRoutes = require("./api/user-routes.js");
+router.use("/api/users",userRoutes)
 
 //const homeRoutes = require("./home-routes");
 //router.use("/",homeRoutes)

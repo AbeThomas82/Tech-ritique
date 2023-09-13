@@ -4,7 +4,7 @@ const {User} = require('../../models');
 router.post('/', (req, res) => {
 
     User.create(req.body).then((user) => {
-      res.json(user);
+      return res.json(user);
     }).catch((err) => {
       console.log(err);
       res.json(err);
@@ -21,7 +21,7 @@ router.post('/login', async (req,res) => {
       return;
   }
 
-  const validatePW = await userData.checkpassword(req.body.password);
+  const validatePW = userData.checkpassword(req.body.password);
 
   console.log(validatePW);
 
