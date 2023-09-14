@@ -29,7 +29,7 @@ router.post('/login', async (req,res) => {
       res.status(400).json({message: 'Not Correct Username or Password'});
       return;
   }
-
+  console.log(req.session);
   req.session.save(() => {
       req.session.userid = userData.id;
       req.session.username = userData.username;

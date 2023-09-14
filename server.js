@@ -17,7 +17,7 @@ const sess = {
         db: sequelize
     })
 };
-
+app.use(session(sess))
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.json());
@@ -27,4 +27,7 @@ app.use(require('./controllers/index'));
 
 app.listen(PORT, () => {
     console.log('Server listening on: http://localhost:' + PORT);
+    sequelize.sync({
+        force: false
+    })
 });
