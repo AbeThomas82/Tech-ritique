@@ -10,6 +10,11 @@ router.get('/', async (req,res) => {
         return res.status(400).json({message: 'Failed to find post.'})
     }
     const posts = postData.map((post) => post.get({plain: true}))
+    
+    res.render('home', {
+        posts,
+        loggedIn: req.session.loggedIn
+      });
 })
 
 
