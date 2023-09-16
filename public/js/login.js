@@ -1,4 +1,4 @@
-
+console.log("Connected.")
 async function handleLogIn(e) {
     e.preventDefault()
     const username = document.querySelector('#loginUsername').value.trim()
