@@ -13,8 +13,9 @@ router.post('/', (req, res) => {
 
 router.post('/login', async (req,res) => {
   try {        
+    console.log(req.body,"login")
       const userData = await User.findOne({where: {username: req.body.username}});   
-   
+   console.log(userData)
 
   if (!userData){
       res.status(400).json({message: 'Not Correct Username or Password'});
@@ -29,7 +30,7 @@ router.post('/login', async (req,res) => {
       res.status(400).json({message: 'Not Correct Username or Password'});
       return;
   }
-  console.log(req.session);
+  console.log(req.session,"Login",validatePW);
   req.session.save(() => {
       req.session.userid = userData.id;
       req.session.username = userData.username;
@@ -44,7 +45,22 @@ router.post('/login', async (req,res) => {
     
 }
 })
-
+router.get('/dashboard', async (req,res) => {
+  const userData = await User.findAll({
+      include: [
+          {
+              model: Post
+          },
+          
+      ],
+      where: {id: req.session.userid}
+  })
+  if (!userData) {
+      return res.status(400).json({message: "Unable to find post."})
+  }
+  console.log(userData)
+  return res.render("dashboard",{userData,username:req.session.username,userid:userid})
+})
 router.post('/logout', (req,res) => {
   if (req.session.log_in){
     req.session.destroy(()=> {
