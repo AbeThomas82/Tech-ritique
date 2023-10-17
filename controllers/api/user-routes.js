@@ -1,9 +1,16 @@
 const router = require('express').Router();
-const {User} = require('../../models');
+const {User,Post} = require('../../models');
 
 router.post('/', (req, res) => {
 
     User.create(req.body).then((user) => {
+      req.session.save(() => {
+        req.session.userid = user.id;
+        req.session.username = user.username;
+        req.session.log_in = true;
+  
+        res.json({ user: user, message: 'You are now logged in!' });
+    })
       return res.json(user);
     }).catch((err) => {
       console.log(err);
@@ -46,25 +53,26 @@ router.post('/login', async (req,res) => {
 }
 })
 router.get('/dashboard', async (req,res) => {
-  const userData = await User.findAll({
+  const userData = await Post.findAll({
       include: [
           {
-              model: Post
+              model: Comment
           },
           
       ],
-      where: {id: req.session.userid}
+      where: {userID: req.session.userid}
   })
   if (!userData) {
       return res.status(400).json({message: "Unable to find post."})
   }
-  console.log(userData)
-  return res.render("dashboard",{userData,username:req.session.username,userid:userid})
+  console.log(userData,req.session,"Session")
+  return res.render("dashboard",{loggedIn:req.session.log_in,userData,username:req.session.username,userid:userid})
 })
-router.post('/logout', (req,res) => {
+router.get('/logout', (req,res) => {
   if (req.session.log_in){
     req.session.destroy(()=> {
-        res.status(200).end();
+      //  res.status(200).end();
+      res.redirect("/")
     });
 
   } else{
