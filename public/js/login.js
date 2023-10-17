@@ -10,6 +10,7 @@ async function handleLogIn(e) {
         body: JSON.stringify({username, password})
     })
     if (response.ok) {
+        console.log("User login")
         document.location.replace('/api/users/dashboard')
     }else {
         alert("Failed to log in.")
@@ -33,6 +34,7 @@ async function handleRegister(e) {
       });
   
       if (response.ok) {
+        console.log("Use signup")
         document.location.replace('/api/users/dashboard');
       } else {
         alert('Failed to register.');
