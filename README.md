@@ -20,7 +20,7 @@ The end user will be able to run the application in the Heroku deployed site usi
 ## Links
 [Repository](https://github.com/AbeThomas82/Tech-ritique)
 
-[Heroku](https://dashboard.heroku.com)
+[Heroku](https://tech-critique-b78ddb93211f.herokuapp.com/)
 
 ## Credits
 Spencer Sokol and Katherine Hopkins
