@@ -49,8 +49,9 @@ router.get('/:id', async (req,res) => {
 });
 
 router.post('/', (req, res) => {
-
-    Post.create(req.body).then((post) => {
+  console.log("create post",req.body)
+   let newPost = {...req.body, userID:req.session.userid}
+    Post.create(newPost).then((post) => {
       res.json(post);
     }).catch((err) => {
       console.log(err);

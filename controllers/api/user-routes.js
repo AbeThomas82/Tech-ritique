@@ -53,21 +53,23 @@ router.post('/login', async (req,res) => {
 }
 })
 router.get('/dashboard', async (req,res) => {
-  console.log("User dashboard",req.session)
   const userData = await Post.findAll({
-      // include: [
-      //     {
-      //         model: Comment
-      //     },
-          
-      // ],
-      where: {userID: req.session.userid}
-  })
+    include: [
+          {
+                model: User
+            },
+        
+         ],
+        where: {userID: req.session.userid}
+      })
+      //const user = userData.post.map(post => post.get({ plain: true }))
+
+      console.log("User dashboard",userData)
   //if (!userData) {
   //    return res.status(400).json({message: "Unable to find post."})
   //}
   //console.log(userData,req.session,"Session")
-  return res.render("dashboard",{loggedIn:req.session.log_in,userData,username:req.session.username,userid:req.session.userid})
+  return res.render("dashboard",{loggedIn:req.session.log_in,userData:userData,username:req.session.username,userid:req.session.userid})
 })
 router.get('/logout', (req,res) => {
   if (req.session.log_in){

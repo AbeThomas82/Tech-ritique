@@ -10,16 +10,19 @@
 </head>
 <body>
     <header id="navheader" class="text-white">
-        <section></section>
+        <section>
+            <h1>Tech-Critique Bloggersphere</h1>
+        </section>
+        <nav class="d-flex justify-content-evenly">
         {{#if loggedIn}}
-            <a href="/">Home</a>
-            <a href="/welcome">Welcome!</a>
-            <a href="/api/users/logout">Logout</a>
+            <a href="/" class="btn btn-secondary">Home</a>
+            <a href="/api/users/dashboard" class="btn btn-secondary">Dashboard</a>
+            <a href="/api/users/logout" class="btn btn-danger">Logout</a>
         {{else}}
-            <a href="/">Home</a>
-            <a href="/welcome">Welcome!</a>
-            <a href="/login">Login!</a>
+            <a href="/" class="btn btn-secondary">Home</a>
+            <a href="/login" class="btn btn-secondary">Login/Sign Up</a>
         {{/if}}  
+        </nav>
     </header>
     <main>
         {{{body}}}
