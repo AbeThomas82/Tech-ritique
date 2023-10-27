@@ -20,7 +20,7 @@ The end user will be able to run the application in the Heroku deployed site usi
 ## Links
 [Repository](https://github.com/AbeThomas82/Tech-ritique)
 
-[Heroku](https://tech-critique-b78ddb93211f.herokuapp.com/)
+[Heroku](https://tech-critique-b78ddb93211f.herokuapp.com/login)
 
 ## Credits
 Spencer Sokol and Katherine Hopkins
@@ -30,3 +30,6 @@ Scott Everett and Sangeetha Kaliaperumal of Calendly
 The TA's of AskBCS
 
 Lee Stevens, Jennifer Arevalo, Oscar Mercado, and other classmates
+
+## Notes
+I did the best I could and deployed as much code as I could manage. Please grade mercifully.
