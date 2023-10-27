@@ -25,7 +25,7 @@ The end user will be able to run the application in the Heroku deployed site usi
 ## Credits
 Spencer Sokol and Katherine Hopkins
 
-Scott Everett of Calendly
+Scott Everett and Sangeetha Kaliaperumal of Calendly
 
 The TA's of AskBCS
 
